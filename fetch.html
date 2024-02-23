@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Quotes Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: lightcoral;
+  }
+  #quote-container {
+    margin-top: 50px;
+  }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div id="quote" style="font-size: 40px; padding: 50px;">
+            
+        </div>
+        <div id="author" style="font-size: 30px;">
+            
+        </div>
+      
+    <div class="btn">
+
+    <button id="button" style="background-color: aqua;">Generate Random Quote</button>
+</div>
+<script>
+ const quot=document.getElementById("quote")
+const autho=document.getElementById("author")
+
+
+const btn=document.getElementById("button")
+
+
+async function callQuote(){
+    let response=await fetch("https://dummyjson.com/quotes");
+    const data=await response.json()
+    let num= Math.floor(Math.random()*30)
+    let q=data.quotes[num]
+    quot.innerText=q.quote;
+    autho.innerText="-"+q.author;
+    
+
+}
+
+
+btn.addEventListener("click",callQuote)
+</script>
+</body>
+</html>
